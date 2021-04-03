@@ -20,7 +20,7 @@ public class StoreData {
         this.items = new ArrayList<>();
     }
 
-    public void addData(List<PurchaseItem> purchaseItems){
+    public synchronized void addData(List<PurchaseItem> purchaseItems){
         for (PurchaseItem item: purchaseItems){
             int itemId = item.getItemID();
             int numItems = item.getNumberOfItems();
@@ -55,4 +55,6 @@ public class StoreData {
         }
         return results;
     }
+
+    public int getStoreId(){return this.storeId;}
 }

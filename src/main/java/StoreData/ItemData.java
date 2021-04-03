@@ -1,22 +1,24 @@
 package StoreData;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class ItemData implements Comparable<ItemData> {
     /**
      * This is a data structure used to store information about Purchases made at a given store
      */
     private int itemId;
-    private int numPurchases;
+    private AtomicInteger numPurchases;
 
     public ItemData(int itemId){
         this.itemId = itemId;
-        this.numPurchases = 0;
+        this.numPurchases = new AtomicInteger();
     }
 
     public int getItemId(){return this.itemId;}
-    public int getNumPurchases(){return this.numPurchases;}
+    public int getNumPurchases(){return this.numPurchases.get();}
 
     public void addPurchase(int numPurchases){
-        this.numPurchases += numPurchases;
+        this.numPurchases.addAndGet(numPurchases);
     }
 
     @Override
